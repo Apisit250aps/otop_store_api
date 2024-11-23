@@ -1,0 +1,17 @@
+{
+  "compilerOptions": {
+    "target": "ES2022",            // เปลี่ยนจาก ES6 เป็น ES2022 เพื่อรองรับฟีเจอร์ใหม่ๆ
+    "module": "NodeNext",          // แนะนำให้ใช้ NodeNext แทน CommonJS
+    "moduleResolution": "NodeNext", // เพิ่มเพื่อให้ทำงานกับ ESM ได้ดีขึ้น
+    "rootDir": "./src",
+    "outDir": "./dist",
+    "esModuleInterop": true,
+    "strict": true,
+    "skipLibCheck": true,          // เพิ่มเพื่อช่วยให้ compile เร็วขึ้น
+    "forceConsistentCasingInFileNames": true, // ช่วยป้องกันปัญหา case-sensitive
+    "sourceMap": true,             // เพิ่มเพื่อช่วยในการ debug
+    "resolveJsonModule": true      // เพิ่มเพื่อให้ import JSON ได้โดยตรง
+  },
+  "include": ["src/**/*.ts"],
+  "exclude": ["node_modules", "dist"]  // เพิ่ม dist เข้าไปใน exclude
+}
