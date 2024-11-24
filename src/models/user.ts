@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model } from "mongoose"
-import { hasher } from "../utils/password";
+import { hasher } from "../utils/password"
 
 interface IUser extends Document {
   username: string
@@ -17,24 +17,22 @@ const UserSchema: Schema = new Schema<IUser>(
     isAdmin: { type: Boolean, default: false },
     isActive: { type: Boolean, default: true }
   },
-  {
-    timestamps: true
-  }
+  { timestamps: true }
 )
-UserSchema.pre('save', async function (next) {
-  if (!this.isModified('password')) {
-    return next();
+UserSchema.pre("save", async function (next) {
+  if (!this.isModified("password")) {
+    return next()
   }
   try {
-    this.password = await hasher(this.password as string);
-    next();
+    this.password = await hasher(this.password as string)
+    next()
   } catch (error) {
-    next();
+    next()
   }
-});
-UserSchema.pre('findOneAndDelete', async function (next) {
+})
+UserSchema.pre("findOneAndDelete", async function (next) {
   // Implement any necessary cleanup logic here
-  next();
+  next()
 })
 
 const User: Model<IUser> = mongoose.model<IUser>("User", UserSchema)
