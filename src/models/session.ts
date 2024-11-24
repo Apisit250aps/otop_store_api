@@ -1,3 +1,4 @@
+import { Mode } from "fs";
 import mongoose, { Schema, Document, Model, ObjectId } from "mongoose"
 
 export interface ISession extends Document {
@@ -13,4 +14,6 @@ const SessionSchema: Schema = new Schema(
   { timestamps: true }
 )
 
-export default mongoose.model<ISession>("Session", SessionSchema)
+const Session:Model<ISession> =mongoose.model<ISession>("Session", SessionSchema)
+
+export default  Session

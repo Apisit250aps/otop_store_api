@@ -1,5 +1,7 @@
 import mongoose, { Schema, Document, Model } from "mongoose"
 import { hasher } from "../utils/password"
+import Session from "./session"
+import Account from "./account"
 
 interface IUser extends Document {
   username: string
@@ -31,7 +33,10 @@ UserSchema.pre("save", async function (next) {
   }
 })
 UserSchema.pre("findOneAndDelete", async function (next) {
-  // Implement any necessary cleanup logic here
+  const query = this
+  const user = await query.findOne()
+  await Session.deleteMany({ userId: user._id })
+  await Account.deleteMany({ userId: user._id })
   next()
 })
 
