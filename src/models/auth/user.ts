@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document, Model } from "mongoose"
-import { hasher } from "../utils/password"
+import { hasher } from "../../utils/password"
 import Session from "./session"
 import Account from "./account"
 
